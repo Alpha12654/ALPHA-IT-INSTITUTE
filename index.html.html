@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha IT Institute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #ffeb99, #ff4d94);
+            color: white;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .logo {
+            width: 150px;
+            position: relative;
+            animation: moveLogo 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveLogo {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            animation: colorChange 3s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            0% { color: #ffeb99; }
+            50% { color: #ff4d94; }
+            100% { color: white; }
+        }
+
+        button {
+            padding: 18px 30px;
+            margin: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-blue { background: #3498db; color: white; }
+        .btn-red { background: #e74c3c; color: white; }
+        .btn-green { background: #2ecc71; color: white; }
+        .btn-yellow { background: #f1c40f; color: black; }
+        .btn-purple { background: #9b59b6; color: white; }
+        .btn-gray { background: #bdc3c7; color: black; }
+
+        .hidden { display: none; }
+
+        .qr-image {
+            width: 280px;
+            margin: 20px auto;
+        }
+
+        .course-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .payment-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .payment-text b {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="alogo.png" alt="Logo" class="logo">
+        <h1 class="title">ALPHA IT INSTITUTE</h1>
+
+        <div id="home">
+            <button class="btn-blue" onclick="showPage('marketing')">Online Digital Marketing Course</button>
+            <button class="btn-green" onclick="showPage('english')">Online English Course</button>
+        </div>
+
+        <div id="marketing" class="hidden">
+            <h2>Payment Options</h2>
+            <button class="btn-red" onclick="showPage('fullPayment')">Full Payment</button>
+            <button class="btn-yellow" onclick="showPage('offerPayment')">Offer Payment</button>
+            <button class="btn-gray" onclick="showPage('home')">Back</button>
+        </div>
+
+        <div id="fullPayment" class="hidden">
+            <h2>Course Price</h2>
+            <p class="course-box">Price: 12,500 BDT</p>
+            <p class="payment-text">Send Money via <b>BKash</b></p>
+              <img src="qr.jpg" alt="QR Code" class="qr-image">
+            <button class="btn-gray" onclick="showPage('marketing')">Back</button>
+        </div>
+
+        <div id="offerPayment" class="hidden">
+            <h2>Enter Coupon Code</h2>
+            <input type="text" id="couponCode" placeholder="Enter Coupon">
+            <button class="btn-purple" onclick="applyCoupon()">OK</button>
+            <div id="offerDetails" class="hidden">
+                <p class="course-box">Offer Price: 4,500 BDT</p>
+                <p class="payment-text">Send Money via <b>BKash</b></p>
+                  <img src="qr.jpg" alt="QR Code" class="qr-image">
+            </div>
+            <button class="btn-gray" onclick="showPage('marketing')">Back</button>
+        </div>
+
+        <div id="english" class="hidden">
+            <h2>Course Price</h2>
+            <p class="course-box">Price: 3,000 BDT</p>
+            <p class="payment-text">Send Money via <b>BKash</b></p>
+            <img src="qr.jpg" alt="QR Code" class="qr-image">
+            <button class="btn-gray" onclick="showPage('home')">Back</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.container > div').forEach(div => {
+                div.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function applyCoupon() {
+            var couponInput = document.getElementById("couponCode").value;
+            var offerDetails = document.getElementById("offerDetails");
+
+            if (couponInput === "Alpha3240") {
+                offerDetails.classList.remove("hidden");
+            } else {
+                alert("Invalid Coupon Code");
+            }
+        }
+    </script>
+
+</body>
+</html>
